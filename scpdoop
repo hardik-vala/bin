@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Transfers an input directory or file to the HDFS. In the case of a directory, it replicates the directory structure on the other side.
+
+# Input directory or file from local system (Must be absolute path).
+input=$1
+# Output directory or file on HDFS (Must be absolute path).
+output=$2
+
+# Input is a file.
+if [[ -f $input ]]
+then
+	cat $input | ssh hardik@hadoop.hpc.mcgill.ca "hadoop fs -put - $output"
+# Input is a directory.
+else
+	# Unfortunately transfers file-by-file.
+	for path in $(find $input_dir -name "*")
+	do
+		if [[ -f $path ]]
+		then
+			cat $path | ssh hardik@hadoop.hpc.mcgill.ca "hadoop fs -put - ${path/$input_dir/$output_dir}"
+		fi	
+	done
+fi

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Counts the # number of non-hidden files and sub-directories in the argument folder.
+# TODO: Add an option for including hidden files in the count.
+
+echo `expr $(ls -l $1 | wc -l) - 1`
