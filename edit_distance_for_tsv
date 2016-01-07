@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 """
-(TODO)
+Calculates the edit distance/string similiarity between entries of two columns
+in a .tsv file, with each row being passed row-by-row through stdin.
 
 @author: Hardik
 """
@@ -22,7 +23,9 @@ DISTANCE_FUNCTIONS = [
 
 
 def main():
-	parser_description = ("(TODO)")
+	parser_description = ("Calculates the edit distance/string "
+		"similiarity between entries of two columns in a .tsv file, "
+		"with each row being passed row-by-row through stdin.")
 	parser = argparse.ArgumentParser(description=parser_description)
 
 	parser.add_argument('method',
