@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Normalizes the text in a file, by lowercasing, removing @-mentions, removing URL's, replacing everything that is not a letter or newline with a space, and does some whitespace cleaning from the start and end of every line.
+
+if [ -z "$1" ]
+then
+	echo "Usage: normalize file"
+else
+	cat $1 | tr 'A-Z' 'a-z' | perl -pe "s/@\w+//g" | perl -pe "s/https?[^\s]+//g" | tr -cs 'a-z\n' ' ' | sed 's/^[ t]*//;s/[ t]*$//' | sed '/^$/d'
+fi
+
