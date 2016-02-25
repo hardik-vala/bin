@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Copies a file into docker container.
+
+usage() {
+	echo -e "Usage: $(basename $0) <Docker container Id> <Input filepath on host> <Output filepath in container>"
+}
+
+# Docker container Id
+container=$1
+# Input filepath on host
+input=$2
+# Output filepath in container
+output=$3
+
+if [[ ! $# -eq 3 ]]
+then
+	usage
+	exit 1
+fi
+
+docker exec -i $container sh -c "cat > $output" < $input
