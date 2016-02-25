@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Gzip compress a given folder.
+
 usage() {
-	echo -e "Usage:$0 <Output path to .tar.gz> <Input folder path>"
+	echo -e "Usage: $(basename $0) <Output path to .tar.gz> <Input folder path>"
 }
 
 # Output archive path (Filename should have extension .tar.gz)
