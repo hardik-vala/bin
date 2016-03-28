@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Perform wc on just code (excluding comments).
+
+usage() {
+	echo -e "Usage: $(basename $0) <wc option> <Input code file>"
+}
+
+# wc option (e.g. -l for counting code lines).
+option=$1
+# Input code file.
+input=$2
+
+if [[ ! $# -eq 2 ]]
+then
+	usage
+	exit 1
+fi
+
+# TODO: Test on non-.java and -.scala files.
+cat $input | sed '/^\s*#/d;/^\s*$/d;/^\s*\//d;/^\s*\*/d' | wc $option
+
